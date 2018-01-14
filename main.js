@@ -1,3 +1,9 @@
+function renderCard(img) {
+    var modalBg = '<div class="zz"><div class="modalCard"><div class="action"><div class="closed"></div></div><div class="imgArea"></div></div></div>';
+    $('body').append(modalBg);
+    $('.imgArea').append(img);
+}
+
 $(function(){
     /*卡牌名称*/
     function kp_name_position(){
@@ -62,8 +68,7 @@ $(function(){
                 break;
         }
     }
-
-
+    
     //卡牌属性
 
     $(".kpinfo_text").on("keyup",function(){
@@ -88,13 +93,18 @@ $(function(){
         var img_base_path=$(this).find("img").attr("src");
         $(".touxiang img").attr("src",img_base_path);
         var imgpath=$(".touxiang img").attr("src");
-        $(".img_path1").val(imgpath);
     });
+
+    $(document).on('click','.closed',function () {
+        $('.zz').remove()
+    })
 
     /*法力消耗数值*/
     $(".fali input").on("keyup",function(){
         var fali_val=$(this).val();
         $(".kpfali").text(fali_val);
+
+
     });
     /*生命数值*/
     $(".hp input").on("keyup",function(){
